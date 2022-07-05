@@ -207,6 +207,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\ActionService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +215,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\HeThongModel.cs" />
+    <Compile Include="Model\NganHangSelect.cs" />
+    <Compile Include="Model\ObjectSelect.cs" />
     <Compile Include="Model\SoPhuModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,6 +233,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Business.ActionService.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Model.HeThongModel.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Model.NganHang.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Model.ObjectSelect.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Model.SoPhuModel.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\TechVNP.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
