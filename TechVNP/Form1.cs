@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using TechVNP.Model;
 namespace TechVNP
@@ -37,8 +38,8 @@ namespace TechVNP
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 var fileNames = dlg.SafeFileNames;
-                this.richTextBox1.Text = String.IsNullOrEmpty(this.richTextBox1.Text) ? this.richTextBox1.Text + string.Join("\r\n", fileNames)
-                                         : this.richTextBox1.Text + "\r\n" + string.Join("\r\n", fileNames);
+                //this.richTextBox1.Text = String.IsNullOrEmpty(this.richTextBox1.Text) ? this.richTextBox1.Text + string.Join("\r\n", fileNames)
+                //                         : this.richTextBox1.Text + "\r\n" + string.Join("\r\n", fileNames);
                 //get excel data
                 // lấy dữ liệu từ dòng
                 var path = dlg.FileNames[0].ToString();
@@ -60,10 +61,7 @@ namespace TechVNP
                     var tables = result.Tables.Cast<DataTable>();
                     foreach (DataTable table in tables)
                     {
-                        dataGridView1.DataSource = table;
                         for (int i = 1; i < table.Rows.Count; i++){
-                            Console.WriteLine(i +":"+table.Rows[i][1].ToString() + table.Rows[i][2].ToString() + table.Rows[i][6].ToString());
-
                         }
 
                     }
@@ -89,8 +87,8 @@ namespace TechVNP
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 var fileNames = dlg.SafeFileNames;
-                this.richTextBox2.Text = String.IsNullOrEmpty(this.richTextBox2.Text) ? this.richTextBox2.Text + string.Join("\r\n", fileNames)
-                                         : this.richTextBox2.Text + "\r\n" + string.Join("\r\n", fileNames);
+                //this.richTextBox2.Text = String.IsNullOrEmpty(this.richTextBox2.Text) ? this.richTextBox2.Text + string.Join("\r\n", fileNames)
+                //                         : this.richTextBox2.Text + "\r\n" + string.Join("\r\n", fileNames);
 
                 List<SoPhuModel> soPhuModels = new List<SoPhuModel>();
                 foreach (var fileLocal in dlg.FileNames.ToList())
@@ -112,9 +110,7 @@ namespace TechVNP
                         var result = reader.AsDataSet();
                         var tables = result.Tables.Cast<DataTable>();
                         foreach (DataTable table in tables)
-                        {
-                            dataGridView1.DataSource = table;
-                            for (int i = 1; i < table.Rows.Count; i++)
+                        {                            for (int i = 1; i < table.Rows.Count; i++)
                             {
                                 //Console.WriteLine(i + ":" + table.Rows[i][1].ToString() + table.Rows[i][2].ToString() + table.Rows[i][6].ToString());
                                 var sp = new SoPhuModel()
@@ -128,16 +124,21 @@ namespace TechVNP
                         }
                         reader.Close();
                     }
-                }                
+                }
+                var js = new JavaScriptSerializer();
+                js.MaxJsonLength = Int32.MaxValue;
+                var soPhu =js.Serialize(soPhuModels);
+                var txtName = "huan.txt";
+                File.WriteAllText(txtName, soPhu);
             }
         }
 
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
 
         }
